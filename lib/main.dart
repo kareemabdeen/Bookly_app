@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/utils/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,6 +7,7 @@ import 'constants.dart';
 import 'core/utils/app_router.dart';
 
 void main() {
+  setupDependencyInjection();
   runApp(const Booklyapp());
 }
 
