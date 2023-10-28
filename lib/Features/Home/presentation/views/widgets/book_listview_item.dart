@@ -1,13 +1,14 @@
+import 'package:bookly_app/Features/Home/data/models/book_model/book_model.dart';
+import 'package:bookly_app/Features/Home/presentation/views/widgets/custom_book_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_router.dart';
-import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
 import 'book_rating_widget.dart';
 
 class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key});
-
+  const BookListViewItem({super.key, required this.bookModel});
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,21 +19,8 @@ class BookListViewItem extends StatelessWidget {
         height: 125,
         child: Row(
           children: [
-            AspectRatio(
-              aspectRatio: 2.6 / 4, //ratio width to height
-              child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(
-                      8,
-                    ),
-                  ),
-                  image: DecorationImage(
-                    image: AssetImage(AssetsManager.book),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
+            CustomBookImage(
+              imageUrl: bookModel.volumeInfo.imageLinks!.smallThumbnail,
             ),
             const SizedBox(
               width: 30,

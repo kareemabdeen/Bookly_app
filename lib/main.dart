@@ -1,14 +1,14 @@
-import 'package:bookly_app/Features/Home/data/reposotory/home_repo_implementaion.dart';
-import 'package:bookly_app/Features/Home/presentation/view_model/Futured_books_cubit/featured_books_cubit.dart';
-import 'package:bookly_app/Features/Home/presentation/view_model/News_books_cubit/news_books_cubit.dart';
-import 'package:bookly_app/core/utils/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'Features/Home/data/reposotory/home_repo_implementaion.dart';
+import 'Features/Home/presentation/view_model/Futured_books_cubit/featured_books_cubit.dart';
+import 'Features/Home/presentation/view_model/News_books_cubit/news_books_cubit.dart';
 import 'Features/Splash/presentation/views/splash_view.dart';
 import 'constants.dart';
 import 'core/utils/app_router.dart';
+import 'core/utils/dependency_injection.dart';
 
 void main() {
   setupDependencyInjection();
@@ -28,7 +28,8 @@ class Booklyapp extends StatelessWidget {
             ..fetchFeturedBooks(), // using spread operator in order to access this method directly when creating cubit
         ),
         BlocProvider(
-          create: (context) => NewsBooksCubit(getIt.get<HomeRepoImpl>()),
+          create: (context) =>
+              NewsBooksCubit(getIt.get<HomeRepoImpl>())..fetchNewsBooks(),
         ),
       ],
       child: MaterialApp(
