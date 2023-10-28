@@ -1,25 +1,22 @@
+import 'package:bookly_app/core/widgets/custom_loading_indicator_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/assets.dart';
-
 class CustomBookImage extends StatelessWidget {
-  const CustomBookImage({super.key});
+  const CustomBookImage({super.key, required this.imageUrl});
 
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 2.7 / 4, //ratio width to height
-      child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              7,
-            ),
-          ),
-          image: DecorationImage(
-            image: AssetImage(AssetsManager.book),
-            fit: BoxFit.contain,
-          ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: AspectRatio(
+        aspectRatio: 2.7 / 4, //ratio width to height
+        child: CachedNetworkImage(
+          imageUrl: imageUrl,
+          fit: BoxFit.fill,
+          placeholder: (context, url) => const CustomLoadingIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       ),
     );

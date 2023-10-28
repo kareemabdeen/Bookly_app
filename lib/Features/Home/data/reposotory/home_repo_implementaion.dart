@@ -16,7 +16,7 @@ class HomeRepoImpl implements HomeReposotory {
     try {
       var data = await apiServices.getRequest(
           endPoint:
-              "/volumes?Filtering=free-ebooks&Sorting=newest &q=subject:Programming");
+              "volumes?Filtering=free-ebooks&Sorting=newest&q=subject:Programming");
 
       final List<BookModel> books = [];
 

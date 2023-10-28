@@ -36,28 +36,39 @@ class ServerError extends Failure {
             errorMessage: "The request was canceled. Please try again.");
 
       case DioExceptionType.unknown:
-        return ServerError(
-            errorMessage:
-                "Oops, there was an error . Please try again later ...");
+        if (dioException.message!.contains('SocketException')) {
+          return ServerError(
+              errorMessage:
+                  'There was connection error , please try again later ...');
+        } else {
+          return ServerError(
+              errorMessage:
+                  "An unexpected error occurred. Please try again later.");
+        }
+
+      case DioExceptionType.badResponse:
+        return ServerError.badReponse(
+            statusCode: dioException.response!.statusCode!,
+            response: dioException.response!.data);
 
       default:
         return ServerError(
-            errorMessage:
-                "An unexpected error occurred. Please try again later.");
+            errorMessage: "oops there was an error , Please try again later.");
+    }
+  }
+
+  factory ServerError.badReponse(
+      {required int statusCode, required dynamic response}) {
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+      return ServerError(errorMessage: response.toString());
+    } else if (statusCode == 404) {
+      return ServerError(errorMessage: 'your request not found');
+    } else if (statusCode == 500) {
+      return ServerError(errorMessage: 'internal server error');
+    } else {
+      return ServerError(
+          errorMessage:
+              "Oops, there was an error . Please try again later ...");
     }
   }
 }
-
-
-      // case DioExceptionType.response:
-      //   if (error.response.statusCode == 404) {
-      //     return ServerError(
-      //         errorMessage:
-      //             "The requested resource was not found on the server.");
-      //   } else {
-      //     return ServerError(
-      //         errorMessage:
-      //             "An unexpected error occurred. Please try again later.");
-      //   }
-
-      
