@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../../../../Home/presentation/views/widgets/styling_text_widget.dart';
 import 'custom_search_textfield_widget.dart';
 import 'search_result_listview.dart';
-import 'package:flutter/material.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});

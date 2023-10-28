@@ -10,4 +10,5 @@ void setupDependencyInjection() {
   getIt.registerSingleton<ApiServices>(ApiServices(dio: getIt.get<Dio>()));
   getIt.registerSingleton<HomeRepoImpl>(
       HomeRepoImpl(apiServices: getIt.get<ApiServices>()));
+
 }

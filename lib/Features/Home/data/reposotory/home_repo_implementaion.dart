@@ -1,9 +1,10 @@
-import '../models/book_model/book_model.dart';
-import 'home_repos.dart';
-import '../../../../core/errors.dart';
-import '../../../../core/utils/api_services.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+
+import '../../../../core/errors.dart';
+import '../../../../core/utils/api_services.dart';
+import '../models/book_model/book_model.dart';
+import 'home_repos.dart';
 
 class HomeRepoImpl implements HomeReposotory {
   final ApiServices apiServices;
