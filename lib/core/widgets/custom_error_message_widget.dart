@@ -1,5 +1,6 @@
-import 'package:bookly_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/styles.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({super.key, required this.errorMessage});

@@ -1,10 +1,10 @@
-import 'package:bookly_app/Features/Home/data/models/book_model/book_model.dart';
-import 'package:bookly_app/Features/Home/presentation/views/widgets/custom_book_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../data/models/book_model/book_model.dart';
 import 'book_rating_widget.dart';
+import 'custom_book_item.dart';
 
 class BookListViewItem extends StatelessWidget {
   const BookListViewItem({super.key, required this.bookModel});
@@ -31,8 +31,8 @@ class BookListViewItem extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: MediaQuery.of(context).size.width * .5,
-                    child: const Text(
-                      'Hary Potter and the Globet Of fire',
+                    child: Text(
+                      bookModel.volumeInfo.title!,
                       style: StylesManager.textStyle20,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
@@ -41,8 +41,8 @@ class BookListViewItem extends StatelessWidget {
                   const SizedBox(
                     height: 3,
                   ),
-                  const Text(
-                    'J.K. Rowling',
+                  Text(
+                    bookModel.volumeInfo.authors![0],
                     style: StylesManager.textStyle14,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
@@ -54,7 +54,7 @@ class BookListViewItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '19.99\$',
+                        'Free',
                         style: StylesManager.textStyle20.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -64,7 +64,11 @@ class BookListViewItem extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(
                             right: MediaQuery.of(context).size.width * .05),
-                        child: const BookRating(),
+                        child: BookRating(
+                          averageRating:
+                              bookModel.volumeInfo.averageRating ?? 2.5,
+                          ratingCount: bookModel.volumeInfo.ratingsCount ?? 250,
+                        ),
                       ),
                     ],
                   ),

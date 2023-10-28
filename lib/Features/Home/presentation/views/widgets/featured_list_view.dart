@@ -1,10 +1,10 @@
-import 'package:bookly_app/Features/Home/presentation/view_model/Futured_books_cubit/featured_books_cubit.dart';
-import 'package:bookly_app/core/widgets/custom_error_message_widget.dart';
-import 'package:bookly_app/core/widgets/custom_loading_indicator_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/widgets/custom_error_message_widget.dart';
+import '../../../../../core/widgets/custom_loading_indicator_widget.dart';
 import '../../../../Home/presentation/views/widgets/custom_book_item.dart';
+import '../../view_model/Futured_books_cubit/featured_books_cubit.dart';
 
 class FeaturedListView extends StatelessWidget {
   const FeaturedListView({super.key});

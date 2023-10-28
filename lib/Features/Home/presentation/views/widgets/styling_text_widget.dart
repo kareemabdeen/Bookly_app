@@ -24,12 +24,15 @@ class StylingTextWidget extends StatelessWidget {
       child: Text.rich(
         TextSpan(
           children: [
-            const TextSpan(
-              text: 'Best',
-              style: StylesManager.titleMedium,
+            TextSpan(
+              text: 'Newest',
+              style: StylesManager.titleMedium.copyWith(
+                // fontFamily: "Arial",
+                fontSize: 20,
+              ),
             ),
             TextSpan(
-              text: ' seller',
+              text: ' Books',
               style: StylesManager.titleMediumWithCustomColor,
             ),
           ],
