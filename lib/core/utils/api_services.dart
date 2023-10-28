@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiServices {
-  late final Dio dio;
+  late final Dio? dio;
 
   final String _baseUrl = 'https://www.googleapis.com/books/v1';
   ApiServices({required this.dio}) {
@@ -12,7 +12,7 @@ class ApiServices {
       receiveTimeout: const Duration(seconds: 20 * 1000),
     );
     dio = Dio(options);
-    dio.interceptors.add(
+    dio!.interceptors.add(
       LogInterceptor(
         responseBody: true,
         error: true,
@@ -25,7 +25,7 @@ class ApiServices {
   }
 
   Future<Map<String, dynamic>> getRequest({required String endPoint}) async {
-    var response = await dio.get('$_baseUrl/$endPoint');
+    var response = await dio!.get('$_baseUrl/$endPoint');
     return response.data;
   }
 }
