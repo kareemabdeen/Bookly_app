@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../Home/presentation/views/widgets/best_seller_listview_widget.dart';
 import '../../../../Home/presentation/views/widgets/custom_home_appbar_widget.dart';
 import '../../../../Home/presentation/views/widgets/featured_list_view.dart';
 import '../../../../Home/presentation/views/widgets/styling_text_widget.dart';
+import 'newest_books_listview_widget.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});

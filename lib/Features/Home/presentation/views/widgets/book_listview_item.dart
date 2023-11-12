@@ -66,7 +66,8 @@ class BookListViewItem extends StatelessWidget {
                             right: MediaQuery.of(context).size.width * .05),
                         child: BookRating(
                           averageRating:
-                              bookModel.volumeInfo.averageRating ?? 2.5,
+                              bookModel.volumeInfo.averageRating?.round() ??
+                                  2.5,
                           ratingCount: bookModel.volumeInfo.ratingsCount ?? 250,
                         ),
                       ),

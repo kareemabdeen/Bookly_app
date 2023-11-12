@@ -16,12 +16,16 @@ class NewsBooksCubit extends Cubit<NewsBooksState> {
   Future<void> fetchNewsBooks() async {
     emit(NewsBooksLoading());
     Either<Failure, List<BookModel>> result =
-        await _homeReposotory.fetchFeaturedBooks();
+        await _homeReposotory.fetchNewestBooks();
 
-    result.fold((failure) {
-      emit(NewsBooksFailure(errorMessage: failure.toString()));
-    }, (books) {
-      emit(NewsBooksSuccess(books: books));
-    });
+    result.fold(
+      (handledMessageAsServerErrorObject) {
+        emit(NewsBooksFailure(
+            errorMessage: handledMessageAsServerErrorObject.toString()));
+      },
+      (books) {
+        emit(NewsBooksSuccess(books: books));
+      },
+    );
   }
 }

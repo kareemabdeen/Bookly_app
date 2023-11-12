@@ -16,25 +16,30 @@ class HomeRepoImpl implements HomeReposotory {
     try {
       var data = await apiServices.getRequest(
           endPoint:
-              "/volumes?Filtering=free-ebooks&Sorting=newest&q=subject:Programming");
+              //https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&orderBy=newest&q=subject:Programming
+              ///volumes?Filtering=free-ebooks&orderBy=newest&q=subject:Programming
+              "/volumes?Filtering=free-ebooks&q=subject:Programming");
 
       final List<BookModel> books = [];
 
-      // for (var book in data['items']) {
-      //   books.add(BookModel.fromJson(book));
-      // }
-      var listOfBooksObjects = data['items'] as List<dynamic>;
+      // var listOfBooksObjects = data['items'] as List<dynamic>;
 
-      listOfBooksObjects.map(
-        (book) {
-          books.add(BookModel.fromJson(book));
-        },
-      ).toList;
+      // listOfBooksObjects.map(
+      //   (book) {
+      //     books.add(BookModel.fromJson(book));
+      //   },
+      // ).toList;
+
+      for (var book in data['items']) {
+        books.add(BookModel.fromJson(book));
+      }
+
       return right(books);
     } catch (e) {
       if (e is DioException) {
-        return left(ServerError.fromDioExceptions(
-            e)); // return object of type ServerError
+        return left(
+          ServerError.fromDioExceptions(e),
+        ); // return object of type ServerError
       }
       return left(ServerError(errorMessage: e.toString()));
     }

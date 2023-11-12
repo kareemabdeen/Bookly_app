@@ -18,11 +18,14 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
     Either<Failure, List<BookModel>> result =
         await _homeReposotory.fetchFeaturedBooks();
 
-    result.fold((failure) {
-      // Failure here is an object with message inside it , so we can use .toString Method to access string message inside it .
-      emit(FeaturedBooksFailure(errorMessage: failure.toString()));
-    }, (books) {
-      emit(FeaturedBooksSuccess(books: books));
-    });
+    result.fold(
+      (failure) {
+        // Failure here is an object with message inside it , so we can use .toString Method to access string message inside it .
+        emit(FeaturedBooksFailure(errorMessage: failure.toString()));
+      },
+      (books) {
+        emit(FeaturedBooksSuccess(books: books));
+      },
+    );
   }
 }
