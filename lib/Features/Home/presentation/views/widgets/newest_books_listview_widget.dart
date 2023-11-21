@@ -22,9 +22,12 @@ class NewestListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 2, // Todo : handle it
+                  vertical:
+                      10, // Todo : handle it , the least books are not appearing totally
                 ),
-                child: BookListViewItem(bookModel: state.books[index]),
+                child: BookListViewItem(
+                  bookModel: state.books[index],
+                ),
               );
             },
           );

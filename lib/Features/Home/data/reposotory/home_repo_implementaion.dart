@@ -12,13 +12,33 @@ class HomeRepoImpl implements HomeReposotory {
   HomeRepoImpl({required this.apiServices});
 
   @override
+  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
+    try {
+      var data = await apiServices.getRequest(
+          endPoint: "/volumes?Filtering=free-ebooks&q=subject:Programming");
+
+      final List<BookModel> books = [];
+
+      for (var book in data['items']) {
+        books.add(BookModel.fromJson(book));
+      }
+
+      return right(books);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerError.fromDioExceptions(e));
+      }
+      return left(ServerError(errorMessage: e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, List<BookModel>>> fetchNewestBooks() async {
     try {
       var data = await apiServices.getRequest(
-          endPoint:
-              //https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&orderBy=newest&q=subject:Programming
-              ///volumes?Filtering=free-ebooks&orderBy=newest&q=subject:Programming
-              "/volumes?Filtering=free-ebooks&q=subject:Programming");
+        endPoint:
+            "/volumes?Filtering=free-ebooks&orderBy=newest&q=subject:Programming",
+      );
 
       final List<BookModel> books = [];
 
@@ -46,10 +66,12 @@ class HomeRepoImpl implements HomeReposotory {
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
+  Future<Either<Failure, List<BookModel>>> fetchSimillarbooks(
+      {required String category}) async {
     try {
       var data = await apiServices.getRequest(
-          endPoint: "/volumes?Filtering=free-ebooks&q=subject:Programming");
+          endPoint:
+              "/volumes?Filtering=free-ebooks&q=subject:Programming&Sorting=relevance");
 
       final List<BookModel> books = [];
 

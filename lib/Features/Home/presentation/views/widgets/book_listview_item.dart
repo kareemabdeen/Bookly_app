@@ -13,7 +13,11 @@ class BookListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, AppRouter.kDetailsBookView);
+        Navigator.pushNamed(
+          context,
+          AppRouter.kDetailsBookView,
+          arguments: bookModel,
+        );
       },
       child: SizedBox(
         height: 125,

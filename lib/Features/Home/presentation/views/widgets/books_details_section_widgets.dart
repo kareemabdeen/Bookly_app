@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/helper.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../Home/presentation/views/widgets/book_rating_widget.dart';
-import '../../../../Home/presentation/views/widgets/custom_book_item.dart';
 import '../../../../Home/presentation/views/widgets/custom_button_widget.dart';
 
 class BooksDetailsSection extends StatelessWidget {
@@ -17,9 +16,10 @@ class BooksDetailsSection extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: context.screenWidth * .15,
           ),
-          child: const CustomBookImage(
-            imageUrl: 'assets/images/download (1).jfif',
-          ),
+          // child: const CustomBookImage(
+          //   imageUrl: 'assets/images/download (1).jfif',
+          // ),
+          child: Image.asset('assets/images/download (1).jfif'),
         ),
         const SizedBox(
           height: 43,
