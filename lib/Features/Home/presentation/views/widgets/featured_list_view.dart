@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/widgets/custom_error_message_widget.dart';
 import '../../../../../core/widgets/custom_loading_indicator_widget.dart';
 import '../../../../Home/presentation/views/widgets/custom_book_item.dart';
@@ -27,9 +28,18 @@ class FeaturedListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: CustomBookImage(
-                    imageUrl:
-                        state.books[index].volumeInfo.imageLinks!.thumbnail,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRouter.kDetailsBookView,
+                        arguments: state.books[index],
+                      );
+                    },
+                    child: CustomBookImage(
+                      imageUrl:
+                          state.books[index].volumeInfo.imageLinks!.thumbnail,
+                    ),
                   ),
                 );
               },
