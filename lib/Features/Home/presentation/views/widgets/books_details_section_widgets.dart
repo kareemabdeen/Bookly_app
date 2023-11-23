@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/utils/functions/launch_url.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/helper.dart';
@@ -56,21 +57,37 @@ class BooksDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 37,
         ),
-        const Row(
+        Row(
           children: [
-            CustomBotton(
+            const CustomBotton(
               leftborder: true,
               text: '19.99\$',
               textColor: Colors.black,
             ),
             CustomBotton(
               leftborder: false,
-              text: 'Free Preview',
-              color: Color(0xffFA8B5E),
+              text: showAccordingToBookAvailabilityLink(bookModel),
+              color: const Color(0xffFA8B5E),
+              onTap: () {
+                launchCustomUrl(
+                  context: context,
+                  pathurl: "amndfma",
+                );
+
+                /// generatic function on my app
+              },
             ),
           ],
         ),
       ],
     );
+  }
+
+  String showAccordingToBookAvailabilityLink(BookModel bookModel) {
+    if (bookModel.volumeInfo.previewLink == null) {
+      return "Not Available";
+    } else {
+      return "Free Preview";
+    }
   }
 }

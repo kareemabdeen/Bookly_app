@@ -11,11 +11,14 @@ extension NavigatorHelper on BuildContext {
       MaterialPageRoute(builder: (context) => widget),
     );
   }
-} // context.simplePush(HomePage());
 
-// Navigator.pushReplacementNamed(context, kHomeView);
-extension NavigatorHelper2 on BuildContext {
   void pushWithReplacmentNamed(String widgetName) {
     Navigator.pushReplacementNamed(this, widgetName);
+  }
+} // context.simplePush(HomePage());
+
+extension ShowSnackBarExtension on BuildContext {
+  void showSnackBar(String text) {
+    ScaffoldMessenger.of(this).showSnackBar(SnackBar(content: Text(text)));
   }
 }
