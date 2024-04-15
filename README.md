@@ -1,7 +1,7 @@
 # bookly_app
 
 ### Bookly App
-
+#### Simple Discribtion
 ##### Bookly is a Flutter app designed with a focus on clean architecture and maintainability. It leverages both the MVVM (Model-View-ViewModel) architecture and the BLoC (Business Logic Component) pattern to manage the application's data flow and user interface interactions seamlessly.
 
 
