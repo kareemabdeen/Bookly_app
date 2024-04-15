@@ -1,12 +1,12 @@
 # bookly_app
 
-"A new Flutter project."
 
-## Getting Started
+## App Full view 
 
-This project is a starting point for a Flutter application.
+![Screenshot_20240404-232629_LinkedIn.jpg](https://github.com/kareemabdeen/Bookly_app/assets/118139061/abd87fcd-8052-4a36-8015-ad218d745a82)
 
-A few resources to get you started if this is your first Flutter project:
+
+
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
